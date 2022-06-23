@@ -1,0 +1,35 @@
+
+node {
+  def app
+  def ecsService = 'is-wso2'
+  def ecsCluster = 'DEV-gdsm-webapp'
+  def region = 'us-west-2'
+  
+  try{
+      
+      //notify('Started')
+        
+      stage 'SCM Checkout'
+        git branch: 'develop', credentialsId: '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', url: 'https://github.com/xFusionTech/xaqua-data-pipeline-api-py.git'
+		
+     
+      stage 'backup, transfer and deploy'
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'dev-spark', transfers: [sshTransfer(cleanRemote: true, excludes: '', execCommand: 'tar -cvf /tmp/spark-docker-compose-backup-`date +%d-%m-%Y_%H%M%S`.tar /home/ec2-user/xf-spark-conf/*; cd /home/ec2-user/xf-spark-conf/; docker-compose down; cp -r /var/tmp/xaqua-spark-config/spark/docker-compose.yml /var/tmp/xaqua-spark-config/spark/Dockerfile /var/tmp/xaqua-spark-config/spark/spark-defaults.conf /home/ec2-user/xf-spark-conf/; docker stack deploy --compose-file=docker-compose.yml xf-spark', execTimeout: 900000, flatten: false, makeEmptyDirs: true, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'xaqua-spark-config', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'spark/docker-compose.yml spark/spark-defaults.conf spark/Dockerfile')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])   		
+		
+		
+           
+  } catch(err) {
+      notify("Error ${err}")
+      currentBuild.result = 'FAILURE'
+  }
+}
+
+
+def notify(status){
+     emailext (
+      to: "GDSMDevelopers@csac.ca.gov",
+      subject: "${status}: Jenkins Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+        <p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
+    )
+}
