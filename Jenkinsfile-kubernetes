@@ -1,0 +1,48 @@
+node {
+  def app
+  def eksCluster = 'develop-udp-eks'
+  def eksChartName = 'dev-data-pipeline-api-py'
+  def namespace = 'develop'
+  def customValueFile = 'dev-values.yaml'
+  
+  def region = 'us-west-2'
+
+  try{
+
+
+      stage 'SCM Checkout'
+        git branch: 'develop', credentialsId: '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', url: 'https://github.com/xFusionTech/xaqua-data-pipeline-api-py.git'
+      
+       stage 'Docker build for commercial cloud'
+            app = docker.build('dev-xaqua-data-pipeline-api-py')
+
+      stage 'Docker push for commercial cloud'
+           docker.withRegistry('https://834352307282.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:xf-aws-system-user') {
+          app.push('latest')
+          app.push("jenkins-${env.JOB_NAME}-${env.BUILD_ID}")
+        }
+    
+
+      stage 'Deploy in aws EKS'
+        //EC2 instance must have IAM role attached in order to run AWS cli commands
+        sh label: '', script: "aws eks --region ${region} update-kubeconfig --name ${eksCluster}"
+	    sh label: '', script: "/usr/local/bin/helm upgrade --install ${eksChartName} ./helm/ -f ./helm/${customValueFile} --namespace ${namespace}" 
+
+
+      //notify('Success')
+
+  } catch(err) {
+      //notify("Error ${err}")
+      currentBuild.result = 'FAILURE'
+  }
+}
+
+
+def notify(status){
+     emailext (
+      to: "m.mulla@xfusiontech.com, anirban2.c@gmail.com",
+      subject: "${status}: Jenkins Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+        <p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
+    )
+}
