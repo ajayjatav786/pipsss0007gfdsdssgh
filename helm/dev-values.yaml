@@ -1,0 +1,35 @@
+image:
+  repository: 834352307282.dkr.ecr.us-west-2.amazonaws.com/dev-xaqua-data-pipeline-api-py
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+service:
+  type: NodePort
+  
+#namespace: develop
+
+replicaCount: 2
+
+containers:
+  port: 80
+  
+ingress:
+  enabled: true
+  className: ""
+  annotations:
+     kubernetes.io/ingress.class: alb
+     alb.ingress.kubernetes.io/scheme: internal
+     alb.ingress.kubernetes.io/target-type: instance
+     alb.ingress.kubernetes.io/group.name: dev-internal
+     alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-west-2:834352307282:certificate/69e2260d-13ec-4ddb-a65b-c043d32ee3e6"
+     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+     alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+     #kubernetes.io/ingress.class: nginx
+     #ingress.kubernetes.io/rewrite-target: /
+       #kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: datapipeline.api.dev.xfusiontech.io
+      paths:
+        - path: /
+          pathType: Prefix
