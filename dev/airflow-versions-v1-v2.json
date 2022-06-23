@@ -1,0 +1,37 @@
+{
+  "repository": "https://github.com/apache/airflow.git",
+  "major_versions": [
+    {
+      "version": "v1",
+      "tag": "1.10.15",
+      "folders": {
+        "airflow": [
+          "airflow/models/",
+          "airflow/hooks/",
+          "airflow/operators/",
+          "airflow/sensors/",
+          "airflow/utils/"
+        ],
+        "providers": [
+          "airflow/contrib/"
+        ]
+      }
+    },
+    {
+      "version": "v2",
+      "tag": "2.1.0",
+      "folders": {
+        "airflow": [
+          "airflow/models/",
+          "airflow/hooks/",
+          "airflow/operators/",
+          "airflow/sensors/",
+          "airflow/utils/"
+        ],
+        "providers": [
+          "airflow/providers/"
+        ]
+      }
+    }
+  ]
+}
