@@ -1,0 +1,121 @@
+from http.client import OK
+
+
+1) Crear 2 cuentas de GitHub
+
+sergiomar73+xfusion.customer.1@gmail.com		xfusion2021
+sergiomar73+xfusion.customer.2@gmail.com		xfusion2021
+
+https://github.com/xfusion-customer-1/custom-operators.git
+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
+
+https://github.com/xfusion-customer-2/custom-operators.git
+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
+
+2) main.py
+
+@app.post("/github/upload/operator")
+async def github_upsert_file(
+    token: str = Form(...),
+    filename: str = Form(...),
+    filecontent: UploadFile = File(...),
+):
+    # 1) Upload file
+    """Inserts or updates (if exists) a file (from path) inside a branch of the repository"""
+    contents = filecontent.file.read()
+    github = GitHubConnector(token)
+    github.upload_operator(
+        filename=filename,
+        filecontent=contents,
+    )
+    # 2) Parse file into DB
+    
+    return {"detail": f"File {filename} updated successfully inside custom-"}
+
+ 3) githubconnector/githubconnector.py
+
+    def upload_operator(
+        self,
+        filename: str,
+        filecontent: str
+    ):
+        """Inserts or updates (if exists) a file inside a branch of the repository"""
+        #if (
+            #filename != "dagworkflow.json"
+            #and filename != "generatedDAG/GEN_dag.py"
+            #and filename != "editedDAG/uedit_dag.py"
+        #):
+            #raise Exception(
+                #'Unrecognized filename "{}". Should be one of: dagworkflow.json, generatedDAG/GEN_dag.py or editedDAG/uedit_dag.py'
+            #)
+        # git_prefix = ""
+        # if filename == "GEN_dag.py":
+        #     git_prefix = "generatedDAG/"
+        # elif filename == "uedit_dag.py​":
+        #     git_prefix = "editedDAG/"
+        # git_file = git_prefix + filename
+        repo = self.g.get_user().get_repo("custom-operators")
+        try:
+            contents = repo.get_contents(filename, ref="main")
+            fileExists = True
+            # print(contents)
+            # git_content = contents.decoded_content.decode()
+            # print(filecontent)
+            # differences = [diff for diff in dl.context_diff(git_content, filecontent)]
+            # if len(differences):
+            #   => UPDATE
+            # else:
+            #   => Nothing, the file hasn't changed
+        except:
+            # NOT FOUND
+            fileExists = False
+        # if filename.lower().endswith(".py"):
+        #     version = current_version
+        # else:
+        #     if fileExists:
+        #         n = self.get_last_commit_in_branch(
+        #             login=self.g.get_user().login, repository=repo_name, branch=branch
+        #         )
+        #         if n["message"] == "Initial commit":
+        #             last_version = 0
+        #         else:
+        #             last_version = int(float(n["message"].split(sep=" ")[1]))
+        #         version = f"VERSION {last_version + 1}"
+        #     else:
+        #         version = "VERSION 1"
+        # print(f"fileExists? {fileExists}")
+        # print(f"version? {version}")
+        # Upsert
+        if fileExists:
+            repo.update_file(filename, "1", filecontent, contents.sha, branch="main")
+            print(f"{filename} UPDATED")
+        else:
+            repo.create_file(filename, "1", filecontent, branch="main")
+            print(f"{filename} CREATED")
+
+1) from GitHub using Access Token
+    => ID Customer = customer-a
+
+    https://github.com/{ID_CUSTOMER}/custom-operators
+
+2) Upload GitHub OK
+
+3) Parse file
+
+    2.1) Clone or pull el repo del cliente
+
+        https://github.com/{ID_CUSTOMER}/custom-operators
+
+        repo
+            airflow/v2
+            udp/v2
+                ...
+            custom/v2
+                customer-a/
+                    ...
+                customer-b/
+                    ...
+
+    2.2) parser.py (from scan_udp) scan_custom(id_cliente)
+
+3) Copy file to Airflow/plugins
