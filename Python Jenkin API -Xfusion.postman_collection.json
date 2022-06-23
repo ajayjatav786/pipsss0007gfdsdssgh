@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "14fa3949-619d-474a-b7c6-6d554c1866d0",
+		"name": "Python Jenkin API -Xfusion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getjobinfo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"jobId\": \"new test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/getjobinfo",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"getjobinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "build_invoke",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"jobId\": \"new test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/build_invoke",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"build_invoke"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Generate Jenkin FIle on GitHub",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "token",
+							"value": "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",
+							"type": "text"
+						},
+						{
+							"key": "repository",
+							"value": "Demo-ETL-Workflow-1",
+							"type": "text"
+						},
+						{
+							"key": "branch",
+							"value": "main",
+							"type": "text"
+						},
+						{
+							"key": "current_version",
+							"value": "VERSION 1",
+							"type": "text"
+						},
+						{
+							"key": "credentials_id",
+							"value": "xf-pipeline-git-token",
+							"type": "text"
+						},
+						{
+							"key": "filename",
+							"value": "Jenkinsfile_dags_transfer",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/github/addjenkinfile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"github",
+						"addjenkinfile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "build_queue_info",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"queueId\": 31\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/build_queue_info",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"build_queue_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "build_info",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"buildId\": 27,\r\n    \"jobId\": \"new test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/build_info",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"build_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getjobconfig",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"jobId\": \"new test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/getjobconfig",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"getjobconfig"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkcrumb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"jobId\": \"dev-demo-airflow-dags-transfer229222222222\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/checkcrumb",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"checkcrumb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createjob",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"jobName\": \"Test1\",\r\n    \"repositoryURL\": \"https://github.com/xfusiontest01/Demo-ETL-Workflow-1.git\",\r\n    \"branch\": \"main\",\r\n    \"jenkinScriptPath\":\"Jenkinsfile_dags_transfer\",\r\n    \"credentialsIdOfSourceCode\": \"xf-pipeline-git-token\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/createjob",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"createjob"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
