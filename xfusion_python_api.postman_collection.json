@@ -1,0 +1,549 @@
+{
+	"info": {
+		"_postman_id": "ba4fef6c-d1ee-4b09-b723-0ca5e6f6f50b",
+		"name": "Operator Catalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DEV_local",
+			"item": [
+				{
+					"name": "GET Stats of data in version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/data/v2"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Modules",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/modules/v2"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/types/v2"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator Bash by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/operators/v2/BashOperator"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator Bash (debug)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/operators/v2/airflow.operators.bash?debug",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"operators",
+								"v2",
+								"airflow.operators.bash"
+							],
+							"query": [
+								{
+									"key": "debug",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator Tree Bash",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/operators/v2/BashOperator/tree"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator Tree airflow.operators.bash",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/operators/v2/airflow.operators.bash/tree"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator BigQuery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/operators/v2/BigQueryCheckOperator"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator UDPDataLoadOperator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/operators/v2/UDPDataLoadOperator"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator UDPDataset",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/operators/v2/UDPDatasetOperator"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Catalog / Airflow",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{API_URL}}/catalog/v2/airflow"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Catalog / Providers",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{API_URL}}/catalog/v2/providers"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Catalog / UDP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{API_URL}}/catalog/v2/udp"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Catalog / Custom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{API_URL}}/catalog/v2/udp"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Operators Refresh Custom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "token",
+									"value": "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",
+									"type": "text"
+								},
+								{
+									"key": "customer_id",
+									"value": "xfusiontest01",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{API_URL}}/operators/v2/refresh_custom"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operators Search Parameters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/operators/v2/search?text=DeadLetterPolicy",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"operators",
+								"v2",
+								"search"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "DeadLetterPolicy"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator BaseOperator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/operators/v2/BaseOperator"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operators Original Full List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/operators/v2?mode=original-full",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"operators",
+								"v2"
+							],
+							"query": [
+								{
+									"key": "mode",
+									"value": "original-full"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operators Original List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/operators/v2?mode=original-lite",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"operators",
+								"v2"
+							],
+							"query": [
+								{
+									"key": "mode",
+									"value": "original-lite"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operators List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/operators/v2?mode=list",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"operators",
+								"v2"
+							],
+							"query": [
+								{
+									"key": "mode",
+									"value": "list"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Catalog ALL v2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{API_URL}}/catalog/v2"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Catalog ALL",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{API_URL}}/catalog"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Catalog / UDP",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{API_URL}}/catalog/v2/udp"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Catalog / Providers",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{API_URL}}/catalog/v2/providers"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Catalog / Airflow",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{API_URL}}/catalog/v2/airflow"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Catalog INIT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{API_URL}}/catalog/init"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/stats/v2"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operators  + Custom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/operators/v2?customer_id=xfusiontest01",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"operators",
+								"v2"
+							],
+							"query": [
+								{
+									"key": "customer_id",
+									"value": "xfusiontest01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operators All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/operators/v2"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}/operators/v2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DEV_xfusion_vpn",
+			"item": [
+				{
+					"name": "GET Stats [vpn]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL_XFUSION_DEV}}/stats/v2"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operators List [vpn]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL_XFUSION_DEV}}/operators/v2?mode=list",
+							"host": [
+								"{{API_URL_XFUSION_DEV}}"
+							],
+							"path": [
+								"operators",
+								"v2"
+							],
+							"query": [
+								{
+									"key": "mode",
+									"value": "list"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operators + Custom [vpn]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL_XFUSION_DEV}}/operators/v2?customer_id=xfusiontest01",
+							"host": [
+								"{{API_URL_XFUSION_DEV}}"
+							],
+							"path": [
+								"operators",
+								"v2"
+							],
+							"query": [
+								{
+									"key": "customer_id",
+									"value": "xfusiontest01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator UDP DataFilterOperator [vpn]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL_XFUSION_DEV}}/operators/v2/UDPDatasetOperator"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator UDP DatasetOperator [vpn]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL_XFUSION_DEV}}/operators/v2/UDPDatasetOperator"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator UDP BaseOperator [vpn]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL_XFUSION_DEV}}/operators/v2/UDPBaseOperator"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Catalog / UDP [vpn]",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{API_URL_XFUSION_DEV}}/catalog/v2/udp"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Catalog INIT [vpn]",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{API_URL_XFUSION_DEV}}/catalog/init"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Catalog / UDP [vpn]",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{API_URL_XFUSION_DEV}}/catalog/v2/udp"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operators + Custom [vpn]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL_XFUSION_DEV}}/operators/v2?customer_id=xfusiontest01",
+							"host": [
+								"{{API_URL_XFUSION_DEV}}"
+							],
+							"path": [
+								"operators",
+								"v2"
+							],
+							"query": [
+								{
+									"key": "customer_id",
+									"value": "xfusiontest01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operators All [vpn]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL_XFUSION_DEV}}/operators/v2"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Operator [vpn]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL_XFUSION_DEV}}/operators/v2"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
